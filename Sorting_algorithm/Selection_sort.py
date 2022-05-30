@@ -1,5 +1,6 @@
 # Selection Sort
 # Comparison based algorithm
+# Selection sort is a sorting algorithm that selects the smallest element from an unsorted list in each iteration and places that element at the beginning of the unsorted lis
 
 def selection_sort(arr):
     n = len(arr)
