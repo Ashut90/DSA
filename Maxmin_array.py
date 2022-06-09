@@ -1,43 +1,59 @@
+import sys
 
-def minmax(arr, low, high, maximum, minimum):
-    if low == high:  # single element present in array
-        minimum = arr[low]
-        maximum = arr[high]
-        return maximum, minimum
 
-    elif low == (high - 1):  # when array have two elements
-        if arr[low] < arr[high]:
-            maximum = arr[low]
-            minimum = arr[high]
+# Divide and conquer solution to find the minimum and maximum number in a list
+
+def findMinAndMax(nums, left, right, min=sys.maxsize, max=-sys.maxsize):
+    # if the list contains only one element
+
+    if left == right:  # common comparison
+
+        if min > nums[right]:  # comparison 1
+            min = nums[right]
+
+        if max < nums[left]:  # comparison 2
+            max = nums[left]
+
+        return min, max
+
+    # if the list contains only two elements
+
+    if right - left == 1:  # common comparison
+
+        if nums[left] < nums[right]:  # comparison 1
+            if min > nums[left]:  # comparison 2
+                min = nums[left]
+
+            if max < nums[right]:  # comparison 3
+                max = nums[right]
+
         else:
-            maximum = arr[high]
-            minimum = arr[low]
+            if min > nums[right]:  # comparison 2
+                min = nums[right]
 
-        return maximum, minimum
+            if max < nums[left]:  # comparison 3
+                max = nums[left]
 
-    mid = (low + high) // 2
+        return min, max
 
-    max1, min1 = minmax(arr, low, mid, maximum, minimum)
-    max2, min2 = minmax(arr, mid + 1, high, maximum, minimum)
+    # find the middle element
+    mid = (left + right) // 2
 
-    return maximum, minimum
+    # recur for the left sublist
+    min, max = findMinAndMax(nums, left, mid, min, max)
 
-    if min1 < min2:
-        min = min1
-    else:
-        min = min2
-
-    if max1 < max2:
-        max = max1
-    else:
-        max = max2
+    # recur for the right sublist
+    min, max = findMinAndMax(nums, mid + 1, right, min, max)
 
     return min, max
 
 
-# Driver code
-arr = [20, 0, 79, 100, 121, 2, 23, 90, 1 , -1]
-n = len(arr)
-(max, min) = minmax(arr, 0, n - 1 , maximum, minimum)
-print(max)
-print(max)
+if __name__ == '__main__':
+    nums = [5, 70, 12, 170, 180, 17, 64, 59, 100, 0, 19]
+
+    # initialize the minimum element by INFINITY and the
+    # maximum element by -INFINITY
+    (min, max) = findMinAndMax(nums, 0, len(nums) - 1)
+
+    print("The minimum element in the list is", min)
+    print("The maximum element in the list is", max)
