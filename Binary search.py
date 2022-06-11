@@ -1,13 +1,15 @@
 def binarysearch(arr, i, j, target):
-    if i == j:
+    if i == j: # when we have just one element are present in an array
         if arr[i] == target:
             return i
         else:
             return -1
+    elif i > j:
+        return -1
 
     else:
 
-        mid = i + (j - i) // 2
+        mid = i + (j - i) // 2 # when there are two elements present
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
@@ -24,4 +26,4 @@ target = 70
 i = 0
 j = len(arr) - 1
 result = binarysearch(arr, i, j, target)
-print(result)
+print("searching the element index: ",result)
