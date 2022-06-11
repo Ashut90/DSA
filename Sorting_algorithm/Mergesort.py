@@ -17,7 +17,7 @@ def mergesortProsedure(arr, i, mid, j):
     q = 0
     k = i
 
-    while p < n1 and q < n2:
+    while p < n1 and q < n2:  # pointers for 1st and 2nd sub array and we perform the comparison to update the elements to original position
         if arr1[p] < arr2[q]:
             arr[k] = arr1[p]
             p += 1
@@ -38,10 +38,15 @@ def mergesortProsedure(arr, i, mid, j):
 # Merge sort method code
 
 def mergesort(arr, i, j):
+    # Dividing the arr
     if i < j:
         mid = i + (j - i) // 2
+
+        # conquer the divided part
         mergesort(arr, i, mid)
         mergesort(arr, mid + 1, j)
+
+        # combined the conquered part
         mergesortProsedure(arr, i, mid, j)
     return arr
 
