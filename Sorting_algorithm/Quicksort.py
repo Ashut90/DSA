@@ -1,7 +1,17 @@
-
 # Quicksort method code for partition
+
+#
+import random
+
+
+def partitionrand(arr, p, q): # function is added for randomized quicksort
+    pivot = random.randrange(p, q)
+    arr[p],arr[pivot] = arr[pivot],arr[p]
+    return partition(arr , p ,q)
+
+
 def partition(arr, p, q):
-    pivot = arr[p]
+    pivot = (arr[p])
     i = p
     for j in range(p + 1, len(arr)):
         if arr[j] <= pivot:
@@ -17,7 +27,7 @@ def quicksort(arr, i, j):
     elif j < i:
         return -1
     else:
-        m = partition(arr, i, j)
+        m = partitionrand(arr, i, j)
         quicksort(arr, i, m - 1)
         quicksort(arr, m + 1, j)
     return arr
