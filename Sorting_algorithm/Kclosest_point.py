@@ -1,13 +1,19 @@
+
+
 from heapq import heappop, heappush
 import math
 
 
 def kclosestpoints(points, k):
+
+    # we try to get the Euclidian distance from the origin
     def get_distance(x, y):
         return math.sqrt(x ** 2 + y ** 2)
 
     min_heap = []
     n = len(points)
+
+    # we tried to traverse through all the points
     for i in range(n):
         x = points[i][0]
         y = points[i][1]
