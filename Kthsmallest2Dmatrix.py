@@ -18,7 +18,6 @@ def ksmallestelement(matrix, k):
 
     return result
 
-
 # Driver Code
 
 matrix = [[1, 4, 7], [3, 5, 9], [6, 8,11]]
